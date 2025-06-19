@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - FarmReach Marketplace</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #eafaf1, #cdeccd);
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ✅ Blurred background image */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/farm.jpg') center/cover no-repeat;
+      filter: blur(8px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    /* ✅ Navigation bar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2d6a4f;
+      padding: 15px 30px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .navbar ul li a:hover {
+      color: #b7e4c7;
+    }
+
+    /* ✅ Login form styling */
+    .login-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      margin: 60px auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2d6a4f;
+    }
+
+    .role-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .role-buttons button {
+      flex: 1;
+      background-color: #52b788;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    .role-buttons button.selected {
+      background-color: #2d6a4f;
+      transform: scale(1.05);
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .login-container button[type="submit"] {
+      width: 100%;
+      background-color: #40916c;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .login-container button[type="submit"]:hover {
+      background-color: #2d6a4f;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .register-link a {
+      color: #1b4332;
+      text-decoration: none;
+    }
+
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ NAVIGATION BAR -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">FarmReach Marketplace</a>
+    <ul>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="about.html">About</a></li>
+     </ul>
+  </nav>
+
+  <!-- ✅ LOGIN FORM -->
+  <div class="login-container">
+    <h2>Login to Your Account</h2>
+  <form id="loginForm">
+      <!-- Hidden input for role -->
+      <input type="hidden" name="role" id="roleInput" value="">
+
+      <div class="role-buttons">
+        <button type="button" class="role-select" data-role="farmer">Farmer</button>
+        <button type="button" class="role-select" data-role="consumer">Buyer</button>
+      </div>
+
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <div class="register-link">
+      Don’t have an account? <a href="registration.html">Register</a>
+    </div>
+  </div>
+
+  <!-- ✅ SCRIPT FOR ROLE SELECTION -->
+  <script>
+    const roleButtons = document.querySelectorAll('.role-select');
+    const roleInput = document.getElementById('roleInput');
+
+    roleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        roleInput.value = button.getAttribute('data-role');
+        roleButtons.forEach(btn => btn.classList.remove('selected'));
+        button.classList.add('selected');
+      });
+    });
+  </script>
+
+<script>
+  const loginForm = document.getElementById('loginForm');
+
+  loginForm.addEventListener('submit', function (e) {
+    e.preventDefault(); // prevent default form submission
+
+    const selectedRole = document.getElementById('roleInput').value;
+
+    if (!selectedRole) {
+      alert('Please select a role first.');
+      return;
+    }
+
+    // ✅ Redirect to the correct page based on role
+    if (selectedRole === 'consumer') {
+      window.location.href = 'buyer marketplace.html';
+    } else if (selectedRole === 'farmer') {
+      window.location.href = 'farmer marketplace.html';
+    }
+  });
+</script>
+</body>
+</html>

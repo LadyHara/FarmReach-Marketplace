@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart - FarmReach Marketplace</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+     header {
+      background-color: #2d6a4f;
+      color: white;
+      padding: 20px 30px;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2d6a4f;
+      padding: 20px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      height: 70px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar-content {
+      display: flex;
+      align-items: left;
+      gap: 50px;
+      justify-content: left;
+      width: 100%;
+    }
+
+    .navbar ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      font-size: 16px;
+      white-space: nowrap;
+    }
+
+    .navbar ul li a:hover {
+      color: #b7e4c7;
+    }
+
+b
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7fdf9;
+  margin: 0;
+  padding: 0 10px; /* optional small padding on sides */
+}
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/farm.jpg') center/cover no-repeat;
+      filter: blur(8px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+.cart-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px; /* space below header & navbar */
+  padding: 20px;
+}
+
+.cart-inner {
+  width: 200%;
+  max-width: 1000px;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+    .cart-container h2 {
+      text-align: center;
+      color: #1b4332;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    #cart-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .cart-item {
+      background-color: #f9f9f9;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .cart-item img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .item-details h4 {
+      margin: 0 0 10px;
+      color: #1b4332;
+      font-size: 18px;
+    }
+
+    .item-details p {
+      margin: 4px 0;
+      font-size: 15px;
+      color: #555;
+    }
+
+    .item-total {
+      font-weight: bold;
+      color: #40916c;
+    }
+
+    .remove-btn {
+      margin-top: 10px;
+      background-color: #d00000;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background-color: #a10000;
+    }
+
+    .cart-summary {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 20px;
+      color: #1b4332;
+      font-weight: bold;
+    }
+
+@media (max-width: 600px) {
+  .cart-container {
+    padding: 20px;
+    margin: 30px auto;
+  }
+}
+
+    .checkout-btn {
+      display: block;
+      margin: 20px auto 0;
+      padding: 12px 30px;
+      font-size: 16px;
+      background-color: #40916c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .checkout-btn:hover {
+      background-color: #2d6a4f;
+    }
+
+.add-btn {
+  margin-left: 10px;
+  background-color: #2d6a4f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background-color: #1b4332;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>FarmReach Marketplace</h1>
+    <h2>My Cart</h2>
+  </header>
+
+  <!-- ✅ NAVIGATION BAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="buyer marketplace.html">Marketplace</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="Buyer Dashboard.html">My Dashboard</a></li>
+        <li><a href="logout.html">Logout</a></li>
+      </ul>
+</div>
+</nav>
+
+<div class="cart-container">
+  <div class="cart-inner">
+    <h2>Items You Added</h2>
+    <div id="cart-items"></div>
+    <div class="cart-summary" id="cart-summary"></div>
+    <button class="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>  </div>
+</div>
+
+<!-- ✅ CHECKOUT MODAL -->
+<div id="checkoutModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;">
+  <div style="background:white; padding:30px; border-radius:10px; max-width:800px; width:90%; max-height:90vh; overflow-y:auto; position:relative;">
+    <span style="position:absolute; top:10px; right:15px; cursor:pointer; font-weight:bold;" onclick="closeCheckout()">✖</span>
+<h1 style="text-align:center; color:#1b4332;">Review Your Order / Suriin ang Iyong Order</h1>
+<p style="text-align:center; color:#555; font-size:15px; max-width:700px; margin: 10px auto 20px;">
+  <p><b>Please review the items below and fill out your personal and payment information to complete your order.</b> <br>
+  <i>(Paki-suri ang mga item sa ibaba at punan ang iyong personal na impormasyon at paraan ng pagbabayad upang makumpleto ang order.</I>
+</p>    <div id="checkoutItems" style="margin-top:20px;"></div>
+
+    <h2 style="margin-top:30px; color:#1b4332;">Your Information</h2>
+<p style="font-size:14px; color:#555; margin-bottom:15px;">
+  Please enter your complete name, contact number, address, and select a payment method. <br>
+  <i>(Paki lagay ang iyong buong pangalan, contact number, address, at piliin ang iyong paraan ng pagbabayad.)</i>
+</p>
+    <form id="checkoutForm">
+      <label><b>Full Name</b><i> (Buong Pangalan)</i>:</label><br>
+      <input type="text" required style="width:100%; padding:10px; margin-bottom:10px;"><br>
+      <label><b>Contact Number</b> <i>(Numero ng Telepono)</i>:</label><br>
+      <input type="tel" required style="width:100%; padding:10px; margin-bottom:10px;"><br>
+      <label><b>Delivery Address</b> <i>(Lugar ng Paghahatiran)</i>:</label><br>
+      <textarea required style="width:100%; padding:10px; margin-bottom:10px;"></textarea><br>
+      <label><b>Payment Method</b> <i>(Paraan ng Pagbabayad)</i>:</label><br>
+      <select required style="width:100%; padding:10px; margin-bottom:20px;">
+        <option value="">-- Select Payment Option --</option>
+        <option value="gcash">Gcash</option>
+        <option value="cod">Cash on Delivery</option>
+        <option value="bank">Bank Transfer</option>
+      </select>
+      <button class="checkout-btn" onclick="checkout()">Checkout</button>
+    </form>
+  </div>
+</div>
+
+
+<script>
+  function loadCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsContainer = document.getElementById("cart-items");
+    const cartSummary = document.getElementById("cart-summary");
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = `<p class="empty-message">Your cart is currently empty.</p>`;
+      cartSummary.textContent = "";
+      document.querySelector(".checkout-btn").style.display = "none";
+      return;
+    }
+
+    cartItemsContainer.innerHTML = "";
+    let total = 0;
+
+    // ✅ Loop to display items
+    cart.forEach((item, index) => {
+      const itemTotal = item.quantity * item.price;
+      total += itemTotal;
+
+      const itemElement = document.createElement("div");
+      itemElement.classList.add("cart-item");
+      itemElement.id = `item-${index}`;
+      itemElement.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <div class="item-details">
+          <h4>${item.name}</h4>
+          <p>Price: ₱${item.price}</p>
+          <p>Quantity: ${item.quantity}</p>
+          <p>Total: <span class="item-total">₱${itemTotal}</span></p>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+          <button class="add-btn" onclick="increaseQuantity(${index})">Add +1</button>
+        </div>
+      `;
+      cartItemsContainer.appendChild(itemElement);
+    });
+
+    cartSummary.textContent = `Total Cart Value: ₱${total.toFixed(2)}`;
+  }
+
+  function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+  }
+
+  function increaseQuantity(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart[index].quantity += 1;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+  }
+
+<script>
+  function loadCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsContainer = document.getElementById("cart-items");
+    const cartSummary = document.getElementById("cart-summary");
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = `<p>Your cart is currently empty.</p>`;
+      cartSummary.textContent = "";
+      return;
+    }
+
+    cartItemsContainer.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+
+      const itemHTML = `
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.name}">
+          <div class="item-details">
+            <h4>${item.name}</h4>
+            <p>Price: ₱${item.price}</p>
+            <p>Quantity: ${item.quantity}</p>
+            <p>Total: <span class="item-total">₱${itemTotal}</span></p>
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+            <button class="add-btn" onclick="increaseQuantity(${index})">Add +1</button>
+          </div>
+        </div>`;
+        
+      cartItemsContainer.innerHTML += itemHTML;
+    });
+
+    cartSummary.textContent = `Total Cart Value: ₱${total.toFixed(2)}`;
+  }
+
+  function removeItem(index) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+  }
+
+  function increaseQuantity(index) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart[index].quantity += 1;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+  }
+
+  window.onload = loadCart;
+</script>
+
+<script>
+  // Load and display cart items when the page loads
+  function loadCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsContainer = document.getElementById("cart-items");
+    const cartSummary = document.getElementById("cart-summary");
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = `<p class="empty-message">Your cart is currently empty.</p>`;
+      cartSummary.textContent = "";
+      document.querySelector(".checkout-btn").style.display = "none";
+      return;
+    }
+
+    cartItemsContainer.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const itemTotal = item.quantity * item.price;
+      total += itemTotal;
+
+      const itemElement = document.createElement("div");
+      itemElement.classList.add("cart-item");
+      itemElement.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <div class="item-details">
+          <h4>${item.name}</h4>
+          <p>Price: ₱${item.price}</p>
+          <p>Quantity: ${item.quantity}</p>
+          <p>Total: <span class="item-total">₱${itemTotal}</span></p>
+          <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+          <button class="add-btn" onclick="increaseQuantity(${index})">Add +1</button>
+        </div>
+      `;
+      cartItemsContainer.appendChild(itemElement);
+    });
+
+    cartSummary.textContent = `Total Cart Value: ₱${total.toFixed(2)}`;
+    document.querySelector(".checkout-btn").style.display = "block";
+  }
+
+  // Remove item by index
+  function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+  }
+
+  // Increase item quantity by index
+  function increaseQuantity(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart[index].quantity += 1;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+  }
+
+  // Load cart on page load
+  window.onload = loadCart;
+</script>
+
+<script>
+  function goToCheckout() {
+    window.location.href = "buyer checkout.html"; // ✅ Redirect to your checkout page
+  }
+</script>
+
+
+</body>
+</html>

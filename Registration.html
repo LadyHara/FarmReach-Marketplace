@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Account - FarmReach Marketplace</title>
+  <style>
+    /* ======= BASE STYLES ======= */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(to bottom right, #eafaf1, #cdeccd);
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/farm.jpg') center/cover no-repeat;
+      filter: blur(8px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2d6a4f;
+      padding: 15px 30px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .navbar ul li a:hover {
+      color: #b7e4c7;
+    }
+
+    .register-container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      margin: 60px auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .register-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2d6a4f;
+    }
+
+    .role-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .role-buttons button {
+      flex: 1;
+      background-color: #52b788;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    .role-buttons button.selected {
+      background-color: #2d6a4f;
+      transform: scale(1.05);
+    }
+
+    .register-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    .register-container button[type="submit"] {
+      width: 100%;
+      background-color: #40916c;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .register-container button[type="submit"]:hover {
+      background-color: #2d6a4f;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .login-link a {
+      color: #1b4332;
+      text-decoration: none;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ NAVIGATION BAR -->
+  <nav class="navbar">
+    <a href="home.html" class="logo">FarmReach Marketplace</a>
+    <ul>
+      <li><a href="Home.html">Home</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ✅ REGISTRATION FORM -->
+  <div class="register-container">
+    <h2>Create Your Account</h2>
+    <form id="registerForm">
+      <input type="hidden" name="role" id="roleInput" value="">
+
+      <div class="role-buttons">
+        <button type="button" class="role-select" data-role="farmer">Farmer</button>
+        <button type="button" class="role-select" data-role="buyer">Buyer</button>
+      </div>
+
+      <input type="text" name="fullname" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="password" name="password" placeholder="Password" required>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <div class="login-link">
+      Already have an account? <a href="login.html">Login</a>
+    </div>
+  </div>
+
+  <!-- ✅ SCRIPT FOR ROLE SELECTION & REDIRECT -->
+  <script>
+    const roleButtons = document.querySelectorAll('.role-select');
+    const roleInput = document.getElementById('roleInput');
+    const registerForm = document.getElementById('registerForm');
+
+    roleButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        roleInput.value = button.getAttribute('data-role');
+        roleButtons.forEach(btn => btn.classList.remove('selected'));
+        button.classList.add('selected');
+      });
+    });
+
+    registerForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // stop form from submitting
+
+      const role = roleInput.value;
+
+      if (!role) {
+        alert('Please select your role (Farmer or Buyer)');
+        return;
+      }
+
+      // Optional: You can store user info in localStorage/sessionStorage if needed
+
+      // Redirect based on role
+      if (role === 'farmer') {
+        window.location.href = 'farmer account set-up.html';
+      } else if (role === 'buyer') {
+        window.location.href = 'buyer account set-up.html';
+      } else {
+        alert('Unknown role selected.');
+      }
+    });
+  </script>
+
+</body>
+</html>

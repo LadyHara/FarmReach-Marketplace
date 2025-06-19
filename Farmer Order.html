@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farmer Dashboard - FarmReach Marketplace</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #eafaf1, #cdeccd);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/farm.jpg') center/cover no-repeat;
+      filter: blur(8px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    /* ===== LOGO & VERTICAL NAV ===== */
+    .logo-column {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 230px;
+      background-color: #2d6a4f;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 14px;
+      z-index: 1000;
+      height: 100vh;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-decoration: none;
+      color: white;
+    }
+
+ .sidebar-links a {
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: background 0.3s;
+  display: block;
+  white-space: nowrap;
+  width: 100%;
+}
+
+    .sidebar-links a:hover {
+      background-color: #40916c;
+    }
+
+    /* ===== TOP NAVIGATION ===== */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 230px; /* leave space for logo/vertical nav */
+      height: 56px;
+      width: calc(100% - 230px);
+      background-color: #2d6a4f;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
+      z-index: 999;
+    }
+
+    .nav-links a {
+      color: white;
+      margin: 0 14px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .icons button {
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+      margin-left: 18px;
+    }
+
+    .container {
+      margin-left: 250px;
+      padding: 80px 30px;
+    }
+
+    h2 {
+      color: #2d6a4f;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      padding: 14px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #40916c;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    select, input.location-input {
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .status-delivered {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ LOGO + SIDEBAR (Vertical Left) -->
+  <div class="logo-column">
+    <a href="home.html" class="logo">FarmReach</a>
+    <div class="sidebar-links">
+      <a href="farmer dashboard.html">Dashboard</a>
+      <a href="farmer product.html">My Products</a>
+      <a href="farmer order.html">Orders</a>
+      <a href="farmer tracking order.html">My Orders</a>
+      <a href="farmer payment.html">Payment</a>
+      <a href="farmer profile.html">Profile</a>
+      <a href="farmer subscription.html">Subscription</a>
+      <a href="logout.html">Logout</a>
+    </div>
+  </div>
+
+  <!-- ✅ TOP NAVIGATION -->
+  <header class="top-nav">
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="farmer marketplace.html">Marketplace</a>
+      <a href="about.html">About</a>
+     </div>
+    <div class="icons">
+      <button title="Notifications">🔔</button>
+      <button title="Messages">💬</button>
+    </div>
+  </header>
+
+  <!-- Orders Section -->
+  <div class="container">
+    <h2><b>📦 Active Orders</b></h2>
+    <table id="activeOrders">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Buyer</th>
+          <th>Quantity</th>
+          <th>Current Location</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rice</td>
+          <td>Juan Dela Cruz</td>
+          <td>10 kg</td>
+          <td><input type="text" class="location-input" value="Cabanatuan, Nueva Ecija"></td>
+          <td>
+            <select onchange="handleStatusChange(this)">
+              <option>Pending</option>
+              <option>Shipped</option>
+              <option>Delivered</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Tomatoes</td>
+          <td>Ana Santos</td>
+          <td>5 kg</td>
+          <td><input type="text" class="location-input" value="Taguig City, Metro Manila"></td>
+          <td>
+            <select onchange="handleStatusChange(this)">
+              <option>Pending</option>
+              <option selected>Shipped</option>
+              <option>Delivered</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Mangoes</td>
+          <td>Carlos Ramirez</td>
+          <td>3 kg</td>
+          <td><input type="text" class="location-input" value="Cebu City, Cebu"></td>
+          <td>
+            <select onchange="handleStatusChange(this)">
+              <option>Pending</option>
+              <option>Shipped</option>
+              <option>Delivered</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Banana</td>
+          <td>Aliah Perez</td>
+          <td>3 kg</td>
+          <td><input type="text" class="location-input" value="Quezon Province, Lopez"></td>
+          <td>
+            <select onchange="handleStatusChange(this)">
+              <option>Pending</option>
+              <option>Shipped</option>
+              <option>Delivered</option>
+            </select>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <h2><b>✅ Completed Orders</b></h2>
+    <table id="completedOrders">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Buyer</th>
+          <th>Quantity</th>
+          <th>Final Location</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+  <tr>
+    <td>Bananas</td>
+    <td>Maria Lopez</td>
+    <td>15 kg</td>
+    <td>Davao City, Davao del Sur</td>
+    <td><span class="status-delivered">Delivered</span></td>
+  </tr>
+  <tr>
+    <td>Mangoes</td>
+    <td>Jose Fernandez</td>
+    <td>7 kg</td>
+    <td>Legazpi City, Albay</td>
+    <td><span class="status-delivered">Delivered</span></td>
+  </tr>
+  <tr>
+    <td>Sili</td>
+    <td>Angela Cruz</td>
+    <td>4 kg</td>
+    <td>Lucena City, Quezon</td>
+    <td><span class="status-delivered">Delivered</span></td>
+  </tr>
+  <tr>
+    <td>Rice</td>
+    <td>Marco Villanueva</td>
+    <td>8 kg</td>
+    <td>San Fernando, Pampanga</td>
+    <td><span class="status-delivered">Delivered</span></td>
+  </tr>
+  <tr>
+    <td>Rice</td>
+    <td>Liza Gomez</td>
+    <td>20 kg</td>
+    <td>Tagbilaran City, Bohol</td>
+    <td><span class="status-delivered">Delivered</span></td>
+  </tr>
+  <tr>
+    <td>Banana</td>
+    <td>Pedro Abad</td>
+    <td>5 kg</td>
+    <td>Iloilo City, Iloilo</td>
+    <td><span class="status-delivered">Delivered</span></td>
+  </tr>
+  <tr>
+    <td>Mangoes</td>
+    <td>Bea Navarro</td>
+    <td>10 kg</td>
+    <td>Roxas City, Capiz</td>
+    <td><span class="status-delivered">Delivered</span></td>
+  </tr>
+  <tr>
+    <td>Tomatoes</td>
+    <td>Kristofer Dela Peña</td>
+    <td>6 kg</td>
+    <td>Vigan City, Ilocos Sur</td>
+    <td><span class="status-delivered">Delivered</span></td>
+  </tr>
+  <tr>
+    <td>Banana</td>
+    <td>Jenny Reyes</td>
+    <td>3 kg</td>
+    <td>Zamboanga City, Zamboanga del Sur</td>
+    <td><span class="status-delivered">Delivered</span></td>
+  </tr>
+  <tr>
+    <td>Tomatoes</td>
+    <td>Francis Lim</td>
+    <td>9 kg</td>
+    <td>San Jose, Occidental Mindoro</td>
+    <td><span class="status-delivered">Delivered</span></td>
+  </tr>
+</tbody>
+    </table>
+  </div>
+
+  <script>
+    function handleStatusChange(selectElement) {
+      const row = selectElement.closest('tr');
+      const status = selectElement.value;
+
+      if (status === "Delivered") {
+        // Move the row to Completed Orders table
+        const completedTable = document.getElementById('completedOrders').getElementsByTagName('tbody')[0];
+        const newRow = completedTable.insertRow();
+
+        const cells = row.getElementsByTagName('td');
+        newRow.innerHTML = `
+          <td>${cells[0].innerText}</td>
+          <td>${cells[1].innerText}</td>
+          <td>${cells[2].innerText}</td>
+          <td>${cells[3].querySelector('input').value}</td>
+          <td><span class="status-delivered">Delivered</span></td>
+        `;
+
+        row.remove(); // remove from active table
+      }
+    }
+  </script>
+
+</body>
+</html>

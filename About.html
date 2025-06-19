@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farmer Dashboard - FarmReach Marketplace</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #2d6a4f;
+      padding: 15px 30px;
+    }
+
+    nav .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .navbar ul li a:hover {
+      color: #b7e4c7;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #eafaf1, #cdeccd);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/farm.jpg') center/cover no-repeat;
+      filter: blur(8px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+
+    .container {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 40px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      color: #2d6a4f;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 18px;
+      color: #333;
+    }
+
+    .logo-image {
+      text-align: center;
+      margin: 40px auto 20px;
+    }
+
+    .logo-image img {
+      width: 500px; /* adjust size as needed */
+      max-width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-info {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+    }
+
+    .contact-info h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #1b4332;
+    }
+
+    .contact-info p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 30px 20px;
+        padding: 25px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      p, .contact-info p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ✅ NAVIGATION -->
+ <nav>
+    <div class="logo">FarmReach Marketplace</div>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="marketplace.html">Marketplace</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="login.html">My Account</a></li>
+
+    </ul>
+  </nav>
+  <div class="container">
+    <h1>About Us</h1>
+    <!-- Logo Image Section -->
+    <div class="logo-image">
+      <img src="images/logo1.jpg" alt="Logo1">
+    </div>
+
+    <p><strong>FarmReach</strong> is a digital marketplace built with one goal in mind — to empower our Filipino farmers and connect them directly to wider markets.</p>
+
+    <p>We understand the challenges many farmers face in selling their produce. That’s why we created <strong>FarmReach Marketplace</strong> — a platform that gives them better access to buyers, businesses, and communities who need fresh, quality agricultural products.</p>
+
+    <p>Through our website, farmers can easily showcase and sell their harvest, while buyers — whether individuals or companies — can conveniently search for trusted suppliers and communicate with them directly.</p>
+
+    <p>With FarmReach, we’re not just building a marketplace — we’re building a stronger link between those who grow our food and those who need it.</p>
+
+    <p><em>Hand in hand with Filipino agriculture — that’s the heart of FarmReach.</em></p>
+
+    <div class="contact-info">
+      <h2>Contact Us</h2>
+      <p><strong>Email:</strong> support@farmreachmarketplace.ph</p>
+      <p><strong>Phone:</strong> (02) 8123-4567 / +63 917 654 3210</p>
+      <p><strong>Address:</strong> Unit 202 AgriHub Building, Quezon Ave, Quezon City, Philippines</p>
+    </div>
+  </div>
+</body>
+</html>

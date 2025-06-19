@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farmer Payment - FarmReach Marketplace</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #eafaf1, #cdeccd);
+      min-height: 100vh;
+      padding-left: 230px;
+      padding-top: 60px;
+      color: #333;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/farm.jpg') center/cover no-repeat;
+      filter: blur(8px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    .logo-column {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 230px;
+      background-color: #2d6a4f;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 14px;
+      z-index: 1000;
+      height: 100vh;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .sidebar-links a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      padding: 12px 16px;
+      border-radius: 8px;
+      transition: background 0.3s;
+      display: block;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    .sidebar-links a:hover {
+      background-color: #40916c;
+    }
+
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 230px;
+      height: 56px;
+      width: calc(100% - 230px);
+      background-color: #2d6a4f;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
+      z-index: 999;
+    }
+
+    .nav-links a {
+      color: white;
+      margin: 0 14px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .icons button {
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+      margin-left: 18px;
+    }
+
+    .main-content {
+      padding: 30px;
+    }
+
+    h1 {
+      color: #2d6a4f;
+      margin-bottom: 20px;
+    }
+
+    .summary-cards {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      flex: 1;
+      min-width: 250px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+      color: #2d6a4f;
+    }
+
+    .card p {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .withdraw-button {
+      display: inline-block;
+      margin-top: -20px;
+      margin-bottom: 30px;
+    }
+
+    .withdraw-button a {
+      background-color: #2d6a4f;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .withdraw-button a:hover {
+      background-color: #40916c;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #2d6a4f;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: #f0f0f0;
+    }
+
+    .no-transactions {
+      text-align: center;
+      padding: 30px;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-column">
+    <a href="home.html" class="logo">FarmReach</a>
+    <div class="sidebar-links">
+      <a href="farmer dashboard.html">Dashboard</a>
+      <a href="farmer product.html">My Products</a>
+      <a href="farmer order.html">Orders</a>
+      <a href="farmer tracking order.html">My Orders</a>
+      <a href="farmer payment.html">Payment</a>
+      <a href="farmer profile.html">Profile</a>
+      <a href="farmer subscription.html">Subscription</a>
+      <a href="logout.html">Logout</a>
+    </div>
+  </div>
+
+  <header class="top-nav">
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="farmer marketplace.html">Marketplace</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="icons">
+      <button title="Notifications">🔔</button>
+      <button title="Messages">💬</button>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <h1>Farmer Payment Summary</h1>
+
+    <div class="summary-cards">
+      <div class="card">
+        <h2>Total Earnings</h2>
+        <p id="totalEarnings">₱0.00</p>
+      </div>
+      <div class="card">
+        <h2>Remaining Balance</h2>
+        <p id="remainingBalance">₱0.00</p>
+      </div>
+      <div class="card">
+        <h2>Withdrawn Amount</h2>
+        <p id="withdrawnAmount">₱0.00</p>
+      </div>
+    </div>
+
+    <div class="withdraw-button">
+      <a href="withdraw.html">Withdraw</a>
+    </div>
+
+    <h2>Transaction History</h2>
+    <table id="transactionTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Amount (₱)</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="transactionBody">
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const totalEarnings = 28870;
+    let withdrawnAmount = 15500;
+    let remainingBalance = 13370;
+
+    const transactions = [
+      { date: '2025-06-18', description: 'Withdrawal to GCash (₱2,500)', amount: -2500, status: 'Completed' },
+      { date: '2025-06-16', description: 'Withdrawal to Maya (₱1,500)', amount: -1500, status: 'Completed' },
+      { date: '2025-06-13', description: 'Withdrawal to BDO Bank (₱4,000)', amount: -4000, status: 'Completed' },
+      { date: '2025-06-10', description: 'Withdrawal to BPI Bank (₱7,500)', amount: -7500, status: 'Completed' }
+    ];
+
+const allWithdrawals = JSON.parse(localStorage.getItem('withdrawals')) || [];
+allWithdrawals.forEach(({ date, method, amount }) => {
+  transactions.unshift({
+    date: date,
+    description: `Withdrawal to ${method} (₱${amount.toLocaleString()})`,
+    amount: -amount,
+    status: 'Completed'
+  });
+  withdrawnAmount += amount;
+  remainingBalance -= amount;
+});
+
+    document.getElementById('totalEarnings').textContent = `₱${totalEarnings.toLocaleString()}`;
+    document.getElementById('remainingBalance').textContent = `₱${remainingBalance.toLocaleString()}`;
+    document.getElementById('withdrawnAmount').textContent = `₱${withdrawnAmount.toLocaleString()}`;
+
+    const tbody = document.getElementById('transactionBody');
+    transactions.forEach(tx => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${tx.date}</td>
+        <td>${tx.description}</td>
+        <td>${tx.amount < 0 ? `-₱${Math.abs(tx.amount).toLocaleString()}` : `₱${tx.amount.toLocaleString()}`}</td>
+        <td>${tx.status}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  </script>
+
+</body>
+</html>

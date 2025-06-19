@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farmer Dashboard - FarmReach Marketplace</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #eafaf1, #cdeccd);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/farm.jpg') center/cover no-repeat;
+      filter: blur(8px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    /* ===== LOGO & VERTICAL NAV ===== */
+    .logo-column {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 230px;
+      background-color: #2d6a4f;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 14px;
+      z-index: 1000;
+      height: 100vh;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-decoration: none;
+      color: white;
+    }
+
+ .sidebar-links a {
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: background 0.3s;
+  display: block;
+  white-space: nowrap;
+  width: 100%;
+}
+
+    .sidebar-links a:hover {
+      background-color: #40916c;
+    }
+
+    /* ===== TOP NAVIGATION ===== */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 230px; /* leave space for logo/vertical nav */
+      height: 56px;
+      width: calc(100% - 230px);
+      background-color: #2d6a4f;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
+      z-index: 999;
+    }
+
+    .nav-links a {
+      color: white;
+      margin: 0 14px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .icons button {
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+      margin-left: 18px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ✅ LOGO + SIDEBAR (Vertical Left) -->
+  <div class="logo-column">
+    <a href="home.html" class="logo">FarmReach</a>
+    <div class="sidebar-links">
+      <a href="farmer dashboard.html">Dashboard</a>
+      <a href="farmer product.html">My Products</a>
+      <a href="farmer order.html">Orders</a>
+      <a href="farmer tracking order.html">My Orders</a>
+      <a href="farmer payment.html">Payment</a>
+      <a href="farmer profile.html">Profile</a>
+      <a href="farmer subscription.html">Subscription</a>
+      <a href="logout.html">Logout</a>
+    </div>
+  </div>
+
+  <!-- ✅ TOP NAVIGATION -->
+  <header class="top-nav">
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="farmer marketplace.html">Marketplace</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="icons">
+      <button title="Notifications">🔔</button>
+      <button title="Messages">💬</button>
+    </div>
+  </header>
+
+</body>
+
+  <!-- ✅ MAIN CONTENT AREA -->
+  <main style="margin-left: 230px; padding: 100px 40px 40px;">
+
+    <!-- ✅ FREE TRIAL NOTICE -->
+    <div id="trialNotice" style="background-color: #d8f3dc; padding: 20px; border-left: 6px solid #2d6a4f; margin-bottom: 30px; border-radius: 8px;">
+      <h2>🎉 Welcome, Farmer!</h2>
+      <p>You’re currently on a <strong>2-month free trial</strong>. Enjoy full access to FarmReach Marketplace benefits.</p>
+      <p><strong>Days left in trial:</strong> <span id="daysLeft" style="color: #40916c; font-weight: bold;">60</span></p>
+    </div>
+
+    <!-- ✅ SUBSCRIPTION PLANS BOX -->
+    <section style="background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 960px;">
+      <h2 style="margin-bottom: 20px; color: #1b4332;">Subscription Plans</h2>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        
+        <!-- Monthly Plan -->
+        <div style="flex: 1; min-width: 250px; border: 1px solid #c7f9cc; border-radius: 10px; padding: 20px; background-color: #f0fdf4;">
+          <h3 style="color: #2d6a4f;">Monthly Plan</h3>
+          <p><strong>₱199</strong> / month</p>
+          <ul style="margin-top: 10px; padding-left: 20px;">
+            <li>Access to full marketplace</li>
+            <li>List unlimited products</li>
+            <li>Chat with buyers</li>
+          </ul>
+          <button style="margin-top: 15px; background-color: #2d6a4f; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">Subscribe</button>
+        </div>
+
+        <!-- Quarterly Plan -->
+        <div style="flex: 1; min-width: 250px; border: 1px solid #b7e4c7; border-radius: 10px; padding: 20px; background-color: #e9fbe5;">
+          <h3 style="color: #2d6a4f;">Quarterly Plan</h3>
+          <p><strong>₱549</strong> / 3 months</p>
+          <ul style="margin-top: 10px; padding-left: 20px;">
+            <li>Same as Monthly Plan</li>
+            <li>3% discount vs monthly</li>
+            <li>Priority support</li>
+          </ul>
+          <button style="margin-top: 15px; background-color: #2d6a4f; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">Subscribe</button>
+        </div>
+
+        <!-- Yearly Plan -->
+        <div style="flex: 1; min-width: 250px; border: 1px solid #95d5b2; border-radius: 10px; padding: 20px; background-color: #d8f3dc;">
+          <h3 style="color: #2d6a4f;">Yearly Plan</h3>
+          <p><strong>₱1,999</strong> / year</p>
+          <ul style="margin-top: 10px; padding-left: 20px;">
+            <li>All Quarterly benefits</li>
+            <li>10% discount</li>
+            <li>Exclusive listing badge</li>
+          </ul>
+          <button style="margin-top: 15px; background-color: #2d6a4f; color: white; padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer;">Subscribe</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

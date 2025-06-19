@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart - FarmReach Marketplace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #eafaf1, #cdeccd);
+      min-height: 100vh;
+      padding-left: 230px;
+      padding-top: 56px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/farm.jpg') center/cover no-repeat;
+      filter: blur(8px);
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    /* Sidebar */
+    .logo-column {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 230px;
+      background-color: #2d6a4f;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 14px;
+      z-index: 1000;
+      height: 100vh;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .sidebar-links a {
+      color: white;
+      text-decoration: none;
+      margin: 10px 0;
+      padding: 12px 16px;
+      border-radius: 8px;
+      transition: background 0.3s;
+      display: block;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    .sidebar-links a:hover {
+      background-color: #40916c;
+    }
+
+    /* Top navbar */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 230px;
+      height: 56px;
+      width: calc(100% - 230px);
+      background-color: #2d6a4f;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
+      z-index: 999;
+    }
+
+    .nav-links a {
+      color: white;
+      margin: 0 14px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .icons button {
+      background: none;
+      border: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: white;
+      margin-left: 18px;
+    }
+
+    /* Order Layout */
+    .order-container {
+      max-width: 900px;
+      margin: 30px auto;
+    }
+
+    .order-card {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+    }
+
+    .order-header {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .order-status {
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .order-status span {
+      font-weight: bold;
+      color: #2d6a4f;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 6px;
+      margin-right: 15px;
+      object-fit: cover;
+      border: 1px solid #ccc;
+    }
+
+    .item-info p {
+      margin: 3px 0;
+    }
+
+    .order-bottom {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .order-summary {
+      align-self: flex-end;
+      text-align: right;
+      margin-top: 15px;
+      min-width: 220px;
+    }
+
+    .order-summary p {
+      margin: 5px 0;
+    }
+
+    .cancel-button {
+      background-color: #d90429;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .cancel-button:hover {
+      background-color: #b10322;
+    }
+
+    .clear-all-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .clear-button {
+      background-color: #6c757d;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .clear-button:hover {
+      background-color: #5a6268;
+    }
+
+    .no-orders {
+      text-align: center;
+      padding: 50px;
+      color: #888;
+    }
+
+.tracking-box {
+  max-width: 900px;
+  margin: 40px auto;
+margin-left: 100px;
+  background-color: #ffffffd9;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+}
+
+.tracking-box h2 {
+  margin-bottom: 12px;
+  color: #2d6a4f;
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="logo-column">
+    <a href="home.html" class="logo">FarmReach</a>
+    <div class="sidebar-links">
+      <a href="farmer dashboard.html">Dashboard</a>
+      <a href="farmer product.html">My Products</a>
+      <a href="farmer order.html">Orders</a>
+      <a href="farmer tracking order.html">My Orders</a>
+      <a href="farmer payment.html">Payment</a>
+      <a href="farmer profile.html">Profile</a>
+      <a href="farmer subscription.html">Subscription</a>
+      <a href="logout.html">Logout</a>
+    </div>
+  </div>
+
+  <!-- Top Navbar -->
+  <header class="top-nav">
+    <div class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="farmer marketplace.html">Marketplace</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="icons">
+      <button title="Notifications">🔔</button>
+      <button title="Messages">💬</button>
+    </div>
+  </header>
+
+  <!-- Orders Section -->
+<div class="tracking-box">
+  <h2>Farmer Order Tracking</h2>
+  <div class="order-container" id="orderContainer">
+    <!-- Orders will be rendered here -->
+  </div>
+
+  <div class="clear-all-container">
+    <button class="clear-button" onclick="clearAllOrders()">Clear All Orders</button>
+  </div>
+</div>
+
+  <script>
+    function displayOrders() {
+      const orders = JSON.parse(localStorage.getItem("orderHistory")) || [];
+      const container = document.getElementById("orderContainer");
+
+      if (orders.length === 0) {
+        container.innerHTML = '<div class="no-orders"><p>No orders placed yet.</p></div>';
+        return;
+      }
+
+      container.innerHTML = "";
+      orders.reverse().forEach((order, index) => {
+        let itemsHTML = "";
+        let subtotal = 0;
+
+        order.items.forEach(item => {
+          const total = item.price * item.quantity;
+          subtotal += total;
+          itemsHTML += `
+            <div class="item">
+              <img src="${item.image}" alt="${item.name}">
+              <div class="item-info">
+                <p><strong>${item.name}</strong></p>
+                <p>Quantity: ${item.quantity}</p>
+                <p>Amount: ₱${total.toFixed(2)}</p>
+              </div>
+            </div>
+          `;
+        });
+
+        const shipping = 50;
+        const protection = 20;
+        const grandTotal = subtotal + shipping + protection;
+
+        const orderHTML = `
+          <div class="order-card">
+            <div class="order-header">Order #${orders.length - index}</div>
+            <div class="order-status">
+              🕒 <span>Status:</span> Waiting for Seller to Accept<br>
+              🕒 <span>Estimated Delivery:</span> 1–3 days after seller accepts
+            </div>
+            <div class="order-bottom">
+              <div class="order-items">
+                ${itemsHTML}
+              </div>
+              <div class="order-summary">
+                <p>Shipping Fee: ₱${shipping.toFixed(2)}</p>
+                <p>Item Protection Fee: ₱${protection.toFixed(2)}</p>
+                <p><strong>Total Amount: ₱${grandTotal.toFixed(2)}</strong></p>
+                <button class="cancel-button" onclick="cancelOrder(${orders.length - 1 - index})">Cancel Order</button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        container.innerHTML += orderHTML;
+      });
+    }
+
+    function cancelOrder(index) {
+      const confirmCancel = confirm("Are you sure you want to cancel this order?");
+      if (!confirmCancel) return;
+
+      const orders = JSON.parse(localStorage.getItem("orderHistory")) || [];
+      orders.splice(index, 1);
+      localStorage.setItem("orderHistory", JSON.stringify(orders));
+      displayOrders();
+    }
+
+    function clearAllOrders() {
+      const confirmClear = confirm("Are you sure you want to delete all your orders?");
+      if (!confirmClear) return;
+
+      localStorage.removeItem("orderHistory");
+      displayOrders();
+    }
+
+    window.onload = displayOrders;
+  </script>
+</body>
+</html>
